@@ -6,25 +6,15 @@ interface StatCardProps {
   title: string;
   value: string | number;
   icon: React.ReactNode;
-  trend?: {
-    value: number;
-    isPositive: boolean;
-  };
 }
 
-const StatCard: React.FC<StatCardProps> = ({ title, value, icon, trend }) => {
+const StatCard: React.FC<StatCardProps> = ({ title, value, icon }) => {
   return (
     <div className="rounded-lg border border-border p-3 md:p-4 glass-dark animate-scale-in">
       <div className="flex items-center justify-between">
         <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center">
           {icon}
         </div>
-        
-        {trend && (
-          <div className={`text-xs font-medium ${trend.isPositive ? 'text-green-600' : 'text-red-600'}`}>
-            {trend.isPositive ? '+' : ''}{trend.value}%
-          </div>
-        )}
       </div>
       
       <div className="mt-2 md:mt-3">
@@ -54,7 +44,6 @@ const QuickStats: React.FC<QuickStatsProps> = ({
         title="Total Clients"
         value={totalClients}
         icon={<Users className="w-4 h-4 md:w-5 md:h-5 text-primary" />}
-        trend={{ value: 12, isPositive: true }}
       />
       
       <StatCard
@@ -67,7 +56,6 @@ const QuickStats: React.FC<QuickStatsProps> = ({
         title="Unpaid Payments"
         value={unpaidPayments}
         icon={<CircleDollarSign className="w-4 h-4 md:w-5 md:h-5 text-primary" />}
-        trend={{ value: 5, isPositive: false }}
       />
       
       <StatCard
